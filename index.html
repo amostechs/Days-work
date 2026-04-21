@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Day's Work</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Day's Work</h1>
+
+<div>
+  <input id="title" placeholder="Task title">
+  <input id="date" type="date">
+  <select id="priority">
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+  </select>
+  <button onclick="addTask()">Add Task</button>
+</div>
+
+<h2>Today's Tasks</h2>
+<ul id="today"></ul>
+
+<h2>Uncompleted Tasks</h2>
+<ul id="uncompleted"></ul>
+
+<script src="app.js"></script>
+</body>
+</html>
