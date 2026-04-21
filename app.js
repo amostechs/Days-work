@@ -13,18 +13,22 @@ async function addTask() {
   loadTasks();
 }
 
+function renderTasks(list, elementId) {
+  document.getElementById(elementId).innerHTML =
+    list.map(t => `
+      <li class="${t.priority} ${t.status === 'completed' ? 'completed' : ''}">
+        <span>${t.title}</span>
+        <button onclick="complete(${t.id})">✔</button>
+      </li>
+    `).join("");
+}
+
 async function loadTasks() {
-  const todayRes = await fetch(API + "/get_today.php");
-  const today = await todayRes.json();
+  const today = await fetch(API + "/get_today.php").then(r => r.json());
+  const uncompleted = await fetch(API + "/get_uncompleted.php").then(r => r.json());
 
-  const unRes = await fetch(API + "/get_uncompleted.php");
-  const uncompleted = await unRes.json();
-
-  document.getElementById("today").innerHTML =
-    today.map(t => `<li>${t.title} <button onclick="complete(${t.id})">✔</button></li>`).join("");
-
-  document.getElementById("uncompleted").innerHTML =
-    uncompleted.map(t => `<li>${t.title}</li>`).join("");
+  renderTasks(today, "today");
+  renderTasks(uncompleted, "uncompleted");
 }
 
 async function complete(id) {
