@@ -1,4 +1,4 @@
-const API = "http://192.168.44.133/dayswork/api/tasks";
+const API = "http://41.215.3.130/dayswork/api/tasks";
 
 async function addTask() {
   const title = document.getElementById("title").value;
