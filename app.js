@@ -7,6 +7,9 @@ async function addTask() {
 
   await fetch(API + "/create.php", {
     method: "POST",
+    headers: {
+    "Content-Type": "application/json"
+  },
     body: JSON.stringify({ title, due_date: date, priority }),
   });
 
@@ -33,7 +36,10 @@ async function loadTasks() {
 
 async function complete(id) {
   await fetch(API + "/update.php", {
-    method: "PUT",
+    method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
     body: JSON.stringify({ id, status: "completed" }),
   });
 
